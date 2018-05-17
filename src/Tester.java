@@ -1,35 +1,26 @@
 import javafx.geometry.Insets; 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
   
 import java.io.File;
-import javafx.event.EventType;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * 
+ * This code is meant to display an early working prototype midi controller on screen
+ * Will implement FXML code in next update 
  *
- * @author Coronado
  */
 public class Tester extends Application{
     Stage window;
     Scene scene1;
    
+   //Buttons for the sounds
    //First Row 
    Button s1Button;
    Button s2Button;
@@ -65,50 +56,51 @@ public class Tester extends Application{
    Button s24Button;
    Button s25Button;
    
+   //Sounds
    //1st Row
-   AudioClip s1 = new AudioClip(new File("build/808Blaster.wav").toURI().toString());
-   AudioClip s2 = new AudioClip(new File("build/808Kick.wav").toURI().toString());
-   AudioClip s3 = new AudioClip(new File("build/808Kick2.wav").toURI().toString());
-   AudioClip s4 = new AudioClip(new File("build/808Kick4D#.wav").toURI().toString());
-   AudioClip s5 = new AudioClip(new File("build/808KickE.wav").toURI().toString());
+   AudioClip s1 = new AudioClip(new File("soundFiles/808Blaster.wav").toURI().toString());
+   AudioClip s2 = new AudioClip(new File("soundFiles/808Kick.wav").toURI().toString());
+   AudioClip s3 = new AudioClip(new File("soundFiles/808Kick2.wav").toURI().toString());
+   AudioClip s4 = new AudioClip(new File("soundFiles/808Kick4D#.wav").toURI().toString());
+   AudioClip s5 = new AudioClip(new File("soundFiles/808KickE.wav").toURI().toString());
    
    //2nd Row
-   AudioClip s6 = new AudioClip(new File("build/snareSoft.wav").toURI().toString());
-   AudioClip s7 = new AudioClip(new File("build/snareLoud.wav").toURI().toString());
-   AudioClip s8 = new AudioClip(new File("build/snareDry.wav").toURI().toString());
-   AudioClip s9 = new AudioClip(new File("build/snareDry.wav").toURI().toString());
-   AudioClip s10 = new AudioClip(new File("build/snareBamboo.wav").toURI().toString());
+   AudioClip s6 = new AudioClip(new File("soundFiles/snareSoft.wav").toURI().toString());
+   AudioClip s7 = new AudioClip(new File("soundFiles/snareLoud.wav").toURI().toString());
+   AudioClip s8 = new AudioClip(new File("soundFiles/snareDry.wav").toURI().toString());
+   AudioClip s9 = new AudioClip(new File("soundFiles/snareCrusher.wav").toURI().toString());
+   AudioClip s10 = new AudioClip(new File("soundFiles/snareBamboo.wav").toURI().toString());
    
    //3rd Row
-   AudioClip s11 = new AudioClip(new File("build/closedHiHat.wav").toURI().toString());
-   AudioClip s12 = new AudioClip(new File("build/cymbalRide1.wav").toURI().toString());
-   AudioClip s13 = new AudioClip(new File("build/cymbalRide2.wav").toURI().toString());
-   AudioClip s14 = new AudioClip(new File("build/crash.wav").toURI().toString());
-   AudioClip s15 = new AudioClip(new File("build/crashDistorted.wav").toURI().toString());
+   AudioClip s11 = new AudioClip(new File("soundFiles/closedHiHat.wav").toURI().toString());
+   AudioClip s12 = new AudioClip(new File("soundFiles/cymbalRide1.wav").toURI().toString());
+   AudioClip s13 = new AudioClip(new File("soundFiles/cymbalRide2.wav").toURI().toString());
+   AudioClip s14 = new AudioClip(new File("soundFiles/crash.wav").toURI().toString());
+   AudioClip s15 = new AudioClip(new File("soundFiles/crashDistorted.wav").toURI().toString());
     
-   AudioClip s16 = new AudioClip(new File("build/chordAM.wav").toURI().toString());
-   AudioClip s17 = new AudioClip(new File("build/chordF#M.wav").toURI().toString());
-   AudioClip s18 = new AudioClip(new File("build/guitarWowChord.wav").toURI().toString());
-   AudioClip s19 = new AudioClip(new File("build/cowbell.wav").toURI().toString());     
-   AudioClip s20 = new AudioClip(new File("build/clap2.wav").toURI().toString());
+   AudioClip s16 = new AudioClip(new File("soundFiles/chordAM.wav").toURI().toString());
+   AudioClip s17 = new AudioClip(new File("soundFiles/chordF#M.wav").toURI().toString());
+   AudioClip s18 = new AudioClip(new File("soundFiles/guitarWowChord.wav").toURI().toString());
+   AudioClip s19 = new AudioClip(new File("soundFiles/cowbell.wav").toURI().toString());     
+   AudioClip s20 = new AudioClip(new File("soundFiles/clap2.wav").toURI().toString());
     
    //5th Row
-   AudioClip s21 = new AudioClip(new File("build/leadPopsLoops.wav").toURI().toString());
-   AudioClip s22 = new AudioClip(new File("build/majorPluckCmLoop.wav").toURI().toString());     
-   AudioClip s23 = new AudioClip(new File("build/trapLoop4.wav").toURI().toString());
-   AudioClip s24 = new AudioClip(new File("build/organLead.wav").toURI().toString());
-   AudioClip s25 = new AudioClip(new File("build/drop.wav").toURI().toString()); 
+   AudioClip s21 = new AudioClip(new File("soundFiles/leadPopsLoops.wav").toURI().toString());
+   AudioClip s22 = new AudioClip(new File("soundFiles/majorPluckCmLoop.wav").toURI().toString());     
+   AudioClip s23 = new AudioClip(new File("soundFiles/trapLoop4.wav").toURI().toString());
+   AudioClip s24 = new AudioClip(new File("soundFiles/organLead.wav").toURI().toString());
+   AudioClip s25 = new AudioClip(new File("soundFiles/drop.wav").toURI().toString()); 
     
    
     
-    Button[] buttonGrid =  {s1Button, s2Button, s3Button, s4Button, s5Button,
+   Button[] buttonGrid =  {s1Button, s2Button, s3Button, s4Button, s5Button,
                             s6Button, s7Button, s8Button, s9Button, s10Button,
                             s11Button, s12Button, s13Button, s14Button, s15Button, 
                             s16Button, s17Button, s18Button, s19Button, s20Button,
                             s21Button, s22Button, s23Button, s24Button, s25Button
                             };
     
-    AudioClip[] sampleGrid = {s1, s2, s3, s4, s5,
+   AudioClip[] sampleGrid = {s1, s2, s3, s4, s5,
                               s6, s7, s8, s9,s10, 
                               s11, s12, s13, s14, s15,
                               s16, s17, s18, s19, s20, 
@@ -137,6 +129,8 @@ public class Tester extends Application{
         padGrid.setVgap(5);
         padGrid.setHgap(5);
         
+        
+        //loop that creates the new buttons and sets them on the buttonGrid
         for(int i = 0; i<25; i++){
             String si = "s" + i;
             buttonGrid[i] = new Button();
@@ -158,8 +152,8 @@ public class Tester extends Application{
         
      
         
-        //can make whole other class for handling events
-        // e represents the event.. lambda expressions
+       
+        // Event handling.. e represents the event.. lambda expressions
         buttonGrid[0].setOnAction(e -> sampleGrid[0].play());
         buttonGrid[1].setOnAction(e -> sampleGrid[1].play());
         buttonGrid[2].setOnAction(e -> sampleGrid[2].play());
@@ -197,7 +191,7 @@ public class Tester extends Application{
         
         Scene scene = new Scene(padGrid, 300, 500);
         
-        String css = this.getClass().getResource("/Users/Coronado/NetBeansProjects/FinalProject_FranciscoCoronado/src/GuiDesigner.css").toExternalForm();
+        String css = this.getClass().getResource("GuiDesigner.css").toExternalForm();
         
         scene.getStylesheets().add(css);
 

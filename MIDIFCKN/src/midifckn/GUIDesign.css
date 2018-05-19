@@ -1,0 +1,47 @@
+.root {
+    -fx-background-color: #1E232A;
+}
+
+Label {
+    -fx-background-color: #505050;
+    -fx-text-fill: #00FF00;
+}
+
+#buttonColumn1:hover {
+    -fx-background-color: #70102A;
+}
+#buttonColumn1 {
+    -fx-background-color: #FF3070;
+}
+#buttonColumn2:hover {
+    -fx-background-color: #703000;
+}
+#buttonColumn2 {
+    -fx-background-color: #FF9000;
+}
+#buttonColumn3:hover {
+    -fx-background-color: #707010;
+}
+#buttonColumn3 {
+    -fx-background-color: #FFFF30;
+}
+#buttonColumn4:hover {
+    -fx-background-color: #107010;
+}
+#buttonColumn4 {
+    -fx-background-color: #30FF40;
+}
+#buttonColumn5:hover {
+    -fx-background-color: #004070;
+}
+#buttonColumn5 {
+    -fx-background-color: #00A0FF;
+}
+#buttonColumn6:hover {
+    -fx-background-color: #400070;
+    -fx-text-fill: #FFFFFF;
+}
+#buttonColumn6 {
+    -fx-background-color: #A000FF;
+    -fx-text-fill: #FFFFFF;
+}

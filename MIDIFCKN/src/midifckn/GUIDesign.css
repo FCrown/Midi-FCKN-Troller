@@ -6,38 +6,44 @@ Label {
     -fx-background-color: #505050;
     -fx-text-fill: #00FF00;
 }
-
-#buttonColumn1:hover {
+#volumeButtons {
+    -fx-background-color: #D9D9D9;
+    -fx-text-fill: #000000;
+}
+#muteButton:selected {
+    -fx-background-color: #000000;
+}
+#buttonColumn1:pressed {
     -fx-background-color: #70102A;
 }
 #buttonColumn1 {
     -fx-background-color: #FF3070;
 }
-#buttonColumn2:hover {
+#buttonColumn2:pressed {
     -fx-background-color: #703000;
 }
 #buttonColumn2 {
     -fx-background-color: #FF9000;
 }
-#buttonColumn3:hover {
+#buttonColumn3:pressed {
     -fx-background-color: #707010;
 }
 #buttonColumn3 {
     -fx-background-color: #FFFF30;
 }
-#buttonColumn4:hover {
+#buttonColumn4:pressed {
     -fx-background-color: #107010;
 }
 #buttonColumn4 {
     -fx-background-color: #30FF40;
 }
-#buttonColumn5:hover {
+#buttonColumn5:pressed {
     -fx-background-color: #004070;
 }
 #buttonColumn5 {
     -fx-background-color: #00A0FF;
 }
-#buttonColumn6:hover {
+#buttonColumn6:selected {
     -fx-background-color: #400070;
     -fx-text-fill: #FFFFFF;
 }

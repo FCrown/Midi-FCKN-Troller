@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -98,7 +97,7 @@ public class GUIBuildController implements Initializable {
         else {
             double v = SM1.changeVolume(2);
             muteLabel.setText("MUTED");
-            volumeLabel.setText("Vol: 0");
+            volumeLabel.setText(" ");
             muteUpdate = true;
         }
     }
@@ -115,7 +114,7 @@ public class GUIBuildController implements Initializable {
     theres a try catch, if the stage cannot be loaded, it will display in the result label.
     */
     @FXML public void processLoad(ActionEvent event) {
-        resultLabel.setText("Please Select a color button to overwrite");
+        resultLabel.setText("Please select a sound file and button to replace");
         try {
             
             //Creating all the objects needed to make the popup GUI
@@ -318,7 +317,7 @@ public class GUIBuildController implements Initializable {
                 count++; 
         }
         if (count == 5) //When the count is 5, all the booleans are false
-            trackMessage = "No Loops";
+            trackMessage = " ";
         statusLabel.setText(trackMessage);
     }
 }

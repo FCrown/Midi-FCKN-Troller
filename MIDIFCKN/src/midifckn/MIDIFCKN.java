@@ -43,6 +43,7 @@ public class MIDIFCKN extends Application {
 
     /**
      * necessary to run the stage.
+     * @param args
      */
     public static void main(String[] args) {
         launch(args);

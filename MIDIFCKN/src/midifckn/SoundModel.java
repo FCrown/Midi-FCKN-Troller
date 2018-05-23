@@ -4,7 +4,7 @@ import java.io.File;
 import javafx.scene.media.AudioClip;
 
 /*
-This class is used to
+This class is used to store, call, and write AudioFile for the program
 */
 public class SoundModel {
     
@@ -47,14 +47,14 @@ public class SoundModel {
     private AudioClip t4 = new AudioClip(new File("src/midifckn/soundFiles/drop.wav").toURI().toString());
     
     
-    private AudioClip[] sampleGrid = {
+    private final AudioClip[] sampleGrid = {
         s0, s1, s2, s3, s4,
         s5, s6, s7, s8, s9,
         s10, s11, s12, s13, s14,
         s15, s16, s17, s18, s19,
         s20, s21, s22, s23, s24
     };
-    private AudioClip[] trackGrid = {t0, t1, t2, t3, t4};
+    private final AudioClip[] trackGrid = {t0, t1, t2, t3, t4};
     
     private double savedVolume = 0;
     
@@ -68,16 +68,26 @@ public class SoundModel {
     public AudioClip getTrackSound(int choice) {
         return trackGrid[choice];
     }
-    
-    /*
-    This method is called on in the action events for the controller
-    UP = 0, DOWN = 1, Mute = 2, Unmute = 3, Recordx50 = 4
-    When 0 is called, it loops through both sample and track array, and increase all volume
-    When 1 is called, it decreases all volume of all AudioClips
-    When 2 is called, it sets all AudioClip volume to zero, and stores the previous volume in a variable
-    When 3 is called, it sets all AudioClip back to the previous volume stored in variable
-    When 4 is called, it sets all AudioClip volume to -10000 as a joke for clicking record button too much
-    */
+    //This is to the recordx50 button as a gag for clicking too many times
+    public double changeVolume() {
+        for (int i = 0; i < 25; i++) {
+            sampleGrid[i].setVolume(-1000);
+        }
+        for (int i = 0; i < 5; i++) {
+                trackGrid[i].setVolume(-1000);
+        }
+        return sampleGrid[0].getVolume();
+    }
+    /**
+     * This method is called on in the action events for the controller and overloads the other method
+     * UP = 0, DOWN = 1, Mute = 2, Unmute = 3
+     * When 0 is called, it loops through both sample and track array, and increase all volume
+     * When 1 is called, it decreases all volume of all AudioClips
+     * When 2 is called, it sets all AudioClip volume to zero, and stores the previous volume in a variable
+     * When 3 is called, it sets all AudioClip back to the previous volume stored in variable
+     * @param choice this will let the program know if volume decreases, increases, mute, or unmute
+     * @return the current volume of all the tracks
+     */
     public double changeVolume(int choice) {
         double h = sampleGrid[0].getVolume();
         if (choice == 1 && h < 1) {
@@ -113,26 +123,22 @@ public class SoundModel {
                 trackGrid[i].setVolume(savedVolume);
             }
         }
-        else if (choice == 4) {
-            for (int i = 0; i < 25; i++) {
-                sampleGrid[i].setVolume(-1000);
-            }
-            for (int i = 0; i < 5; i++) {
-                trackGrid[i].setVolume(-1000);
-            }
-        }
         return sampleGrid[0].getVolume();
     }
     
     
-    /*
-    This method is used for replacing the sound within one of the sound buttons
     
-    It uses a try catch for exception handling. All the strings from the sample sounds should be able to convert to integers
-    If it cannot be converted to an integer, it will have a number format exception, and it will be a Track button.
-    If the user loads in another file thats not an audio file, the exception handling catch will notify the user in the result label
-    If no buttons were selected, it will also notify the user
-    */
+    
+    /**
+     * This method is used for replacing the sound within one of the sound buttons
+     * It uses a try catch for exception handling. All the strings from the sample sounds should be able to convert to integers
+     * If it cannot be converted to an integer, it will have a number format exception, and it will be a Track button.
+     * If the user loads in another file thats not an audio file, the exception handling catch will notify the user in the result label
+     * If no buttons were selected, it will also notify the user
+     * @param choice converted to integer to determine which button is used, if NumberFormatException, itll determine the track button
+     * @param pathChoice This is the string for the chosen file path
+     * @return returns a string to display on the result panel
+     */
     public String loadSound(String choice, String pathChoice) {
         int a;
         try { //If the combobox choice was 0-24
@@ -142,18 +148,26 @@ public class SoundModel {
             return "New sound added to button" + a;
         }
         catch (NumberFormatException nfe) { //If the string cant be converted to integer, choice was T1-T5
-            if (choice == "T1")
-                a = 0;
-            else if (choice == "T2")
-                a = 1;
-            else if (choice == "T3")
-                a = 2;
-            else if (choice == "T4")
-                a = 3;
-            else if (choice == "T5")
-                a = 4;
-            else //If no combobox selection was made
-                return "Please select a button to replace";
+            switch (choice) {
+                case "T1":
+                    a = 0;
+                    break;
+                case "T2":
+                    a = 1;
+                    break;
+                case "T3":
+                    a = 2;
+                    break;
+                case "T4":
+                    a = 3;
+                    break;
+                case "T5":
+                    a = 4;
+                    break;
+                default:
+                    //If no combobox selection was made
+                    return "Please select a button to replace";
+            }
             AudioClip ac = new AudioClip(new File(pathChoice).toURI().toString());
             trackGrid[a] = ac;
             return "New sound added to track" + (a+1);

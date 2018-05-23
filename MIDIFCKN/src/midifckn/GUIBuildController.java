@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -138,10 +139,13 @@ public class GUIBuildController implements Initializable {
                                                  "16","17","18","19","20","21","22","23","24","T1","T2","T3","T4","T5");
            
             //When the Open Sound button is pressed, it opens up a file chooser
-            openButton.setOnAction(e -> {
-                file = fileChooser.showOpenDialog(stage);
-                if (file != null)
-                    lb1.setText(file.toString()); //Store the file into a string to load into a button later
+            openButton.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    file = fileChooser.showOpenDialog(stage);
+                    if (file != null)
+                        lb1.setText(file.toString()); //Store the file into a string to load into a button later
+                }
             });
             
 
@@ -218,7 +222,7 @@ public class GUIBuildController implements Initializable {
             resultLabel.setText("I warned you!");
         else if (recordCount==15) {
             resultLabel.setText("CRASH, PERMANENT MUTE");
-            double v = SM1.changeVolume(4);
+            double v = SM1.changeVolume();
             volumeLabel.setText("Vol: -INFINITY");
         }
         else if (recordCount==16)

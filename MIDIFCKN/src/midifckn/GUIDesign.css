@@ -5,6 +5,7 @@
 Label {
     -fx-background-color: #505050;
     -fx-text-fill: #00FF00;
+    -fx-font-family: "Verdana";
 }
 #volumeButtons {
     -fx-background-color: #D9D9D9;

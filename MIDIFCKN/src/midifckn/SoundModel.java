@@ -2,11 +2,13 @@ package midifckn;
 
 import java.io.File;
 import javafx.scene.media.AudioClip;
-//import javafx.stage.FileChooser;
 
-
+/*
+This class is used to
+*/
 public class SoundModel {
     
+    /////////////////////////////////////FIELD/////////////////////////////////////
     //1st Row Sound
     private AudioClip s0 = new AudioClip(new File("src/midifckn/soundFiles/808Blaster.wav").toURI().toString());
     private AudioClip s1 = new AudioClip(new File("src/midifckn/soundFiles/bongo.wav").toURI().toString());
@@ -42,7 +44,7 @@ public class SoundModel {
     private AudioClip t1 = new AudioClip(new File("src/midifckn/soundFiles/shakerLoop.wav").toURI().toString());     
     private AudioClip t2 = new AudioClip(new File("src/midifckn/soundFiles/trapLoop4.wav").toURI().toString());
     private AudioClip t3 = new AudioClip(new File("src/midifckn/soundFiles/organLead.wav").toURI().toString());
-    private AudioClip t4 = new AudioClip(new File("src/midifckn/soundFiles/drop.wav").toURI().toString()); 
+    private AudioClip t4 = new AudioClip(new File("src/midifckn/soundFiles/drop.wav").toURI().toString());
     
     
     private AudioClip[] sampleGrid = {
@@ -56,6 +58,9 @@ public class SoundModel {
     
     private double savedVolume = 0;
     
+    
+    
+    ////////////////////////////////////METHODS//////////////////////////////////////////
     public AudioClip getButtonSound(int choice){
         return sampleGrid[choice];
     }
@@ -64,6 +69,15 @@ public class SoundModel {
         return trackGrid[choice];
     }
     
+    /*
+    This method is called on in the action events for the controller
+    UP = 0, DOWN = 1, Mute = 2, Unmute = 3, Recordx50 = 4
+    When 0 is called, it loops through both sample and track array, and increase all volume
+    When 1 is called, it decreases all volume of all AudioClips
+    When 2 is called, it sets all AudioClip volume to zero, and stores the previous volume in a variable
+    When 3 is called, it sets all AudioClip back to the previous volume stored in variable
+    When 4 is called, it sets all AudioClip volume to -10000 as a joke for clicking record button too much
+    */
     public double changeVolume(int choice) {
         double h = sampleGrid[0].getVolume();
         if (choice == 1 && h < 1) {
@@ -110,10 +124,42 @@ public class SoundModel {
         return sampleGrid[0].getVolume();
     }
     
-    /*public String loadSound(int choice) {
-        FileChooser file1 = new FileChooser();
-        AudioClip s26 = new AudioClip(file1);
-        sampleGrid[choice] = s26;
-        return "New sound added to button";
-    }*/
+    
+    /*
+    This method is used for replacing the sound within one of the sound buttons
+    
+    It uses a try catch for exception handling. All the strings from the sample sounds should be able to convert to integers
+    If it cannot be converted to an integer, it will have a number format exception, and it will be a Track button.
+    If the user loads in another file thats not an audio file, the exception handling catch will notify the user in the result label
+    If no buttons were selected, it will also notify the user
+    */
+    public String loadSound(String choice, String pathChoice) {
+        int a;
+        try { //If the combobox choice was 0-24
+            a = Integer.parseInt(choice);
+            AudioClip ac = new AudioClip(new File(pathChoice).toURI().toString());
+            sampleGrid[a] = ac;
+            return "New sound added to button" + a;
+        }
+        catch (NumberFormatException nfe) { //If the string cant be converted to integer, choice was T1-T5
+            if (choice == "T1")
+                a = 0;
+            else if (choice == "T2")
+                a = 1;
+            else if (choice == "T3")
+                a = 2;
+            else if (choice == "T4")
+                a = 3;
+            else if (choice == "T5")
+                a = 4;
+            else //If no combobox selection was made
+                return "Please select a button to replace";
+            AudioClip ac = new AudioClip(new File(pathChoice).toURI().toString());
+            trackGrid[a] = ac;
+            return "New sound added to track" + (a+1);
+        }
+        catch (Exception e) { //If the file extension wanted audio file
+            return "Please select a proper Audio file";
+        }
+    }
 }
